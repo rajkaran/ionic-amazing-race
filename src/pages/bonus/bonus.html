@@ -1,0 +1,20 @@
+
+<ion-content padding>
+    <ion-item-group *ngFor="let quiz of quizzes; let qi = index;" >
+        <ion-item-divider color="light">{{quiz.name}}</ion-item-divider>
+        <div *ngFor="let section of quiz.sections; let si = index" >
+            <ion-item *ngIf="section.isBonus" >
+                <button ion-item (click)="sectionSelected(qi, si)">
+                    <ion-row>
+                        <ion-col text-left>
+                            {{section.name}}
+                        </ion-col>
+                        <ion-col text-right class="wgh-text-secondary">
+                            Ballots: {{section.ballots}}
+                        </ion-col>
+                    </ion-row>
+                </button>
+            </ion-item>
+        </div>
+    </ion-item-group>
+</ion-content>

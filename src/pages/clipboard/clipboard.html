@@ -1,0 +1,69 @@
+<ion-header no-border>
+    <ion-navbar transparent>
+       <ion-title><h3>{{sectionOnScreen}}</h3></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding fullscreen>
+    <ion-slides pager="true">
+        <ion-slide *ngFor="let question of questions; let qi = index">
+            <ion-row>
+                <ion-col text-left>Questions {{qi+1}}: {{question.statement}}</ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-item no-lines
+                    *ngFor="let choice of question.choices; let ci = index">
+                        <ion-label>{{choice.value}}</ion-label>
+                        <ion-checkbox
+                        (ionChange)="checkChange(choice.value, $event, qi)"
+                        ></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col text-left>
+                    Answers:
+                    <span *ngFor="let ans of questionForm.value.questions[qi].selections"
+                    >{{ans}}, </span>
+                </ion-col>
+                <ion-col text-right>
+                    <button ion-button color="secondary"
+                    (click)="onSubmit(qi)">SAVE</button>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+    </ion-slides>
+
+    <!-- <ion-grid>
+        <ion-row><ion-col><h3>{{sectionOnScreen}}</h3></ion-col></ion-row>
+        <ion-row *ngFor="let question of questions; let qi = index">
+            <ion-col>
+                <ion-row>
+                    <ion-col>Questions {{qi+1}}: {{question.statement}}</ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <ion-item no-lines
+                        *ngFor="let choice of question.choices; let qi = index">
+                            <ion-label>{{choice.value}}</ion-label>
+                            <ion-checkbox></ion-checkbox>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col >
+                        Answers:
+                    </ion-col>
+                    <ion-col text-right>
+                        <button ion-button color="secondary" (click)="onSubmit(qi)">Secondary</button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+</ion-content>

@@ -1,5 +1,38 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
-</ion-tabs>
+<ion-header>
+    <ion-navbar primary>
+        <ion-title>
+            <h3 ion-text text-center *ngIf="participant && team">
+                <span>{{participant?.givenName}}&nbsp; {{participant?.familyName}}</span>
+                <span>( {{team?.name}} )</span>
+            </h3>
+            <h3 ion-text text-center *ngIf="!participant && !team">
+                participant ( team )
+            </h3>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col text-center>
+                    <button ion-button icon-only menuToggle class="wgh-d-inline">
+                        <ion-icon name="cloud"></ion-icon>
+                    </button>
+                </ion-col>
+
+                <ion-col text-center>
+                    <button ion-button icon-only menuToggle class="wgh-d-inline">
+                        <ion-icon name="qr-scanner"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-tabs>
+        <ion-tab [root]="tabClipboard" [rootParams]="forwardParam" tabTitle="Clipboard" tabIcon="clipboard"></ion-tab>
+        <ion-tab [root]="tabSection" tabTitle="Section" tabIcon="logo-buffer"></ion-tab>
+        <ion-tab [root]="tabBonus" tabTitle="Bonus" tabIcon="bowtie"></ion-tab>
+    </ion-tabs>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar> <ion-title>
+        <h3 ion-text text-center class="wgh-logo">Amazing Race</h3>
+    </ion-title> </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            <div padding>
+                <ion-segment [(ngModel)]="captureMethod">
+                    <ion-segment-button value="scan">
+                        SCAN
+                    </ion-segment-button>
+                    <ion-segment-button value="manual">
+                        TYPE IN
+                    </ion-segment-button>
+                </ion-segment>
+            </div>
+        </ion-card-header>
+
+        <ion-card-content>
+            <div [ngSwitch]="captureMethod" padding>
+                <div *ngSwitchCase="'scan'">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col text-center>
+                                <img src="../../assets/imgs/qr-code.png"
+                                class="wgh-w-auto wgh-d-inline" />
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <button ion-button full (click)="onScan()"
+                                >Scan Your Passport</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+                <div *ngSwitchCase="'manual'">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-label color="primary" stacked
+                                    >QR code</ion-label>
+
+                                    <ion-textarea [(ngModel)]="qrCode" rows="5"
+                                    placeholder="such as 6b3f7142-9cf6-4467-9e84-9609057b5e18"
+                                    ></ion-textarea>
+                                  </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row margin-top>
+                            <ion-col>
+                                <button ion-button full (click)="onSubmit()"
+                                >Submit</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
